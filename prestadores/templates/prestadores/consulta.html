@@ -1,9 +1,10 @@
+{% extends "prestadores/header.html" %}
 <head>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <title>Prestador - Pesquisa</title>
 </head>
 
-<body>
+{% block content %}
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
         <a class="navbar-brand" href="#">
             <a href="index.html">
@@ -42,4 +43,5 @@
             </div>
         </div>
     </div>
-</body>
+    
+{% endblock %}
