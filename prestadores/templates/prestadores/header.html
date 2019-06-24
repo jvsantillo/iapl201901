@@ -3,7 +3,11 @@
 {% load static %}
 
 <head>
+    {% if user.is_authenticated %}        
     <title>Integração Apps</title>
+    {% else %}
+    <title>Não autenticado</title>
+    {% endif %}
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type = 'text/css' id="bootstrap-css"/>
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
