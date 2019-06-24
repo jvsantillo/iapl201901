@@ -15,14 +15,27 @@
 
 <body>
     {% if user.is_authenticated %}
-    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-            <a href="/prestadores">
-                Prestadores
-            </a>
-            <a href="{% url 'logout' %}">
-                Log Out
-            </a>
-    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Prestadores</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/prestadores">Home <span class="sr-only">(Página Atual)</span></a>
+            </li>
+          </ul>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}"></a>>Sair</a>
+          </li>
+          <form type="get" action="search_persons" class="form-inline my-2 my-lg-0">
+            <input id="search_box" name="search_box" class="form-control mr-sm-2" type="text" placeholder="Pesquisar" aria-label="Pesquisar">
+            <button id="search_submit" class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+          </form>
+        </div>
+      </nav>
 
     <center>
         <h1>Pesquisa de Prestadores</h1>
