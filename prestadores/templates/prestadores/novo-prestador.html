@@ -5,7 +5,11 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta charset="UTF-8">
+    {% if user.is_authenticated %}
     <title>Title</title>
+    {% else %}
+    <title>Não autenticado</title>
+    {% endif %}
 </head>
 <body>
 
@@ -28,4 +32,10 @@
 
 
 </body>
+{% if user.is_authenticated %}
+
+{% else %}
+<h1>Você não está logado</h1>
+<a href="{% url 'login' %}">login</a>
+{% endif %}
 </html>
