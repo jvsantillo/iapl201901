@@ -16,10 +16,15 @@
 </head>
 
 <body class="body" style="background-color:#f6f6f6">
+    {% if user.is_authenticated %}
     <div>
         {% block content %}
         {% endblock %}
     </div>
+    {% else %}
+    <h1>Você não está logado</h1>
+    <a href="{% url 'login' %}">login</a>
+    {% endif %}
 </body>
 
 </html>
