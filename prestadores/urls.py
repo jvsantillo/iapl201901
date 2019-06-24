@@ -39,6 +39,8 @@ urlpatterns = [
     #ex: /prestadores/retrieve_expertises
     path('retrieve_expertises/', views.retrieve_expertises, name='retrieve_expertises'),
 
-    #ex: /prestadores/retrieve_expertises
+    #ex: /prestadores/search_persons
     path('search_persons/', views.search_persons, name='search_persons'),
+    #ex: /prestadores/signup
+    path('signup/', views.SignUp.as_view(), name='signup'),
 ]
