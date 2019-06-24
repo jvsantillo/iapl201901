@@ -1,0 +1,13 @@
+{% extends "prestadores/header.html" %}
+
+{% block content %}
+
+<h1>ID: {{id}}</h1> </br>
+<h1>Name: {{name}}</h1>  </br>
+<h1>date: {{insertion_date}}</h1>  </br>
+
+<form action="/prestadores/delete_person/{{ id }}/">
+    <input type="submit" value="Delete" />
+</form>
+
+{% endblock %}

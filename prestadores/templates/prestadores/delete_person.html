@@ -1,0 +1,11 @@
+{% extends "prestadores/header.html" %}
+
+{% block content %}
+
+<h1>Congratulations, you've successfully deleted person with ID {{id}} </h1> </br>
+
+<form action="/prestadores/retrieve_persons/">
+    <input type="submit" value="Person list" />
+</form>
+
+{% endblock %}

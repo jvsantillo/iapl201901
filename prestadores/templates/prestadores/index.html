@@ -1,0 +1,10 @@
+{% extends "prestadores/header.html" %}
+
+{% block content %}
+
+<form type="get" action="search_persons" style="margin: 0">
+  <input  id="search_box" type="text" name="search_box"  placeholder="Search..." >
+  <button id="search_submit" type="submit" >Submit</button>
+</form>
+
+{% endblock %}

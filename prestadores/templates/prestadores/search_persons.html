@@ -1,0 +1,15 @@
+{% extends "prestadores/header.html" %}
+
+{% block content %}
+
+{% if active_persons_list %}
+    <ul>
+    {% for person in active_persons_list %}
+            <li><a href="/prestadores/person/{{ person.id }}/">{{ person.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <h1>No persons are available.</h1>
+{% endif %}
+
+{% endblock %}

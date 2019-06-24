@@ -1,0 +1,31 @@
+{% extends "prestadores/header.html" %}
+
+{% block content %}
+
+<div class="form-group">
+    <label for="person_name">Name</label>
+    <input id="person-name" class="form-control" type="text" placeholder="Name">
+    <label for="person_name">Insertion Date</label>
+    <div class="container">
+        <div class="row">
+          <div class='col-sm-12'>
+            <div class="form-group">
+              <div class='input-group date' id='datetimepicker1'>
+                <label>Data:</label>
+                <input type='text' data-date-format="DD-MM-YYYY" class="form-control" />
+                <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <script type="text/javascript">
+            $(function() {
+              $('#datetimepicker1').datetimepicker();
+            });
+          </script>
+        </div>
+      </div>
+  </div>
+
+{% endblock %}
