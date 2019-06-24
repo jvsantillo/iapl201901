@@ -5,10 +5,12 @@ from django.template import loader
 from django.utils import timezone
 
 
+
 from .models import Person
 
 def index(request):
     template = loader.get_template('prestadores/index.html')
+
     context = {}
 
     return HttpResponse(template.render(context, request))

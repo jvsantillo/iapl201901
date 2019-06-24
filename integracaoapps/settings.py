@@ -56,7 +56,7 @@ ROOT_URLCONF = 'integracaoapps.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,10 +126,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-   'C:\iapl201901\static'  # Here you tell django to look for a folder named 'static'
+   os.path.join(BASE_DIR, 'static')  # Here you tell django to look for a folder named 'static'
 ]
 
 STATIC_ROOT = 'C:\iapl201901\static'
 
+
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
+
+LOGIN_REDIRECT_URL = '/prestadores'
