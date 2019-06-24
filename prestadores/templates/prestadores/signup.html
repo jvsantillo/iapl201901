@@ -1,10 +1,10 @@
 <!-- templates/signup.html -->
-{% extends 'header.html' %}
+{% extends "prestadores/header.html" %}
 
-{% block title %}Sign Up{% endblock %}
+{% block title %}Registrar-se{% endblock %}
 
 {% block content %}
-  <h2>Sign up</h2>
+  <h2>Registrar-se</h2>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
