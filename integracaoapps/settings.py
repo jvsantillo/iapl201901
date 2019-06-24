@@ -135,4 +135,5 @@ STATIC_ROOT = 'C:\iapl201901\static'
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/prestadores'
+LOGOUT_REDIRECT_URL = '/accounts/login'
