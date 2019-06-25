@@ -8,12 +8,12 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 
+from .models import Person, Expertise, Supplier
+
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'prestadores/signup.html'
-
-from .models import Person
 
 def index(request):
     template = loader.get_template('prestadores/index.html')
@@ -60,7 +60,14 @@ def retrieve_persons(request):
     return HttpResponse(template.render(context, request))
 
 def supplier (request, supplier_id):
-    return HttpResponse("You are looking at supplier %s" % supplier_id)
+    supplier_obj = Supplier.objects.get(pk=supplier_id)
+    template = loader.get_template('prestadores/supplier.html')
+    context = {
+        'id': supplier_obj.id,
+        'insertion_date': supplier_obj.insertion_date
+    }
+    return HttpResponse(template.render(context, request))
+    
 def create_supplier(request):
     return HttpResponse("In development... You are creating a supplier")
 def update_supplier(request, supplier_id):
@@ -85,9 +92,11 @@ def retrieve_expertises(request):
 
 def search_persons (request):
     if request.method == 'GET':
-        active_persons_list = Person.objects.filter(name__contains= request.GET.get('search_box', None), exclusion_date__isnull=True).order_by('-insertion_date')[:5]
+        active_persons_list = Person.objects.filter(name__istartswith= request.GET.get('search_box', None), exclusion_date__isnull=True).order_by('-insertion_date')[:5]
+        active_suppliers_list = Supplier.objects.filter(person__name__istartswith = request.GET.get('search_box', None))
         template = loader.get_template('prestadores/search_persons.html')
         context = {
             'active_persons_list': active_persons_list,
+            'active_suppliers_list': active_suppliers_list,
         }
     return HttpResponse(template.render(context, request))
