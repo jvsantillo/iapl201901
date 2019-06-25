@@ -59,15 +59,16 @@ def retrieve_persons(request):
 
     return HttpResponse(template.render(context, request))
 
-def supplier (request, supplier_id):
-    supplier_obj = Supplier.objects.get(pk=supplier_id)
+def supplier (request, person_id):
+    supplier_obj = Supplier.objects.get(pk=person_id)
+    person_obj = Person.objects.get(pk=person_id)
     template = loader.get_template('prestadores/supplier.html')
     context = {
-        'id': supplier_obj.id,
+        'id': person_id,
         'insertion_date': supplier_obj.insertion_date
     }
     return HttpResponse(template.render(context, request))
-    
+
 def create_supplier(request):
     return HttpResponse("In development... You are creating a supplier")
 def update_supplier(request, supplier_id):
@@ -78,8 +79,17 @@ def delete_supplier(request, supplier_id):
 def retrieve_suppliers(request):
     return HttpResponse("In development...Here are all suppliers")
 
-def expertise (request, expertise_id):
-    return HttpResponse("You are looking at expertise %s" % expertise_id)
+def expertise (request, person_id):
+    expertise_obj = Expertise.objects.get(pk=person_id)
+    person_obj = Person.objects.get(pk=person_id)
+    template = loader.get_template('prestadores/expertise.html')
+    context = {
+        'id': person_id,
+        'insertion_date': expertise_obj.insertion_date,
+        'field': expertise_obj.field
+    }
+    return HttpResponse(template.render(context, request))
+
 def create_expertise(request):
     return HttpResponse("In development... You are creating a expertise")
 def update_expertise(request, expertise_id):
@@ -94,9 +104,11 @@ def search_persons (request):
     if request.method == 'GET':
         active_persons_list = Person.objects.filter(name__istartswith= request.GET.get('search_box', None), exclusion_date__isnull=True).order_by('-insertion_date')[:5]
         active_suppliers_list = Supplier.objects.filter(person__name__istartswith = request.GET.get('search_box', None))
+        #active_expertise_list = Expertise.objects.filter(supplier__person__name_istartswith = request.GET.get('search_box', None))
         template = loader.get_template('prestadores/search_persons.html')
         context = {
             'active_persons_list': active_persons_list,
             'active_suppliers_list': active_suppliers_list,
+           # 'active_expertise_list': active_expertise_list,
         }
     return HttpResponse(template.render(context, request))
