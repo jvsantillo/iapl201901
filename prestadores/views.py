@@ -103,7 +103,7 @@ def retrieve_expertises(request):
 def search_persons (request):
     if request.method == 'GET':
         active_persons_list = Person.objects.filter(name__istartswith= request.GET.get('search_box', None), exclusion_date__isnull=True).order_by('-insertion_date')[:5]
-        active_suppliers_list = Supplier.objects.filter(person__name__istartswith = request.GET.get('search_box', None))
+        active_suppliers_list = Supplier.objects.filter(person__name__istartswith = request.GET.get('search_box', None), exclusion_date__isnull=True).order_by('-insertion_date')[:5]
         #active_expertise_list = Expertise.objects.filter(supplier__person__name_istartswith = request.GET.get('search_box', None))
         template = loader.get_template('prestadores/search_persons.html')
         context = {
