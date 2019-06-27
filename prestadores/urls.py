@@ -16,6 +16,7 @@ urlpatterns = [
     path('delete_person/<int:person_id>/', views.delete_person, name='delete_person'),
     #ex: /prestadores/retrieve_persons
     path('retrieve_persons/', views.retrieve_persons, name='retrieve_persons'),
+    
 
     #ex: /prestadores/create_supplier
     path('create_supplier/', views.create_supplier, name='create_supplier'),
@@ -43,4 +44,12 @@ urlpatterns = [
     path('search_persons/', views.search_persons, name='search_persons'),
     #ex: /prestadores/signup
     path('signup/', views.SignUp.as_view(), name='signup'),
+
+    #API REST:
+    
+    #ex: /prestadores/api/active_persons_list
+    path('/api/active_persons_list', views.ActivePersonsList, name='active_persons_list'),
+    #ex: /prestadores/api/active_persons_list
+    path('/api/all_persons_list', views.AllPersonsList, name='all_persons_list')
+
 ]

@@ -6,6 +6,8 @@ from django.utils import timezone
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
+from rest_framework import generics
+from .serializers import PersonSerializer, SupplierSerializer, ExpertiseSerializer
 
 
 from .models import Person, Expertise, Supplier
@@ -58,6 +60,16 @@ def retrieve_persons(request):
     }
 
     return HttpResponse(template.render(context, request))
+
+
+class ActivePersonsList(generics.ListCreateAPIView):
+    queryset = Person.objects.filter(exclusion_date__isnull=True).order_by('-insertion_date')
+    serializer_class = PersonSerializer
+
+class AllPersonsList(generics.ListCreateAPIView):
+    queryset = Person.objects.all()
+    serializer_class = PersonSerializer
+
 
 def supplier (request, person_id):
     supplier_obj = Supplier.objects.get(pk=person_id)
