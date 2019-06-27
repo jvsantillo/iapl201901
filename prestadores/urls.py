@@ -48,8 +48,8 @@ urlpatterns = [
     #API REST:
 
     #ex: /prestadores/api/active_persons_list
-    path('api/active_persons_list', views.ActivePersonsList, name='active_persons_list'),
+    path('api/active_persons_list', views.ActivePersonsList.as_view(), name='active_persons_list'),
     #ex: /prestadores/api/active_persons_list
-    path('api/all_persons_list', views.AllPersonsList, name='all_persons_list')
+    path('api/all_persons_list', views.AllPersonsList.as_view(), name='all_persons_list')
 
 ]
