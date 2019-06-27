@@ -112,6 +112,14 @@ def delete_expertise(request, expertise_id):
 def retrieve_expertises(request):
     return HttpResponse("In development...Here are all expertises")
 
+class AllExpertiseList(generics.ListCreateAPIView):
+    queryset = Expertise.objects.all()
+    serializer_class = ExpertiseSerializer
+
+class AllSuppliersList(generics.ListCreateAPIView):
+    queryset = Supplier.objects.all()
+    serializer_class = SupplierSerializer
+
 def search_persons (request):
     if request.method == 'GET':
         active_persons_list = Person.objects.filter(name__istartswith= request.GET.get('search_box', None), exclusion_date__isnull=True).order_by('-insertion_date')[:5]

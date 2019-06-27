@@ -49,7 +49,13 @@ urlpatterns = [
 
     #ex: /prestadores/api/active_persons_list
     path('api/active_persons_list', views.ActivePersonsList.as_view(), name='active_persons_list'),
-    #ex: /prestadores/api/active_persons_list
-    path('api/all_persons_list', views.AllPersonsList.as_view(), name='all_persons_list')
+    #ex: /prestadores/api/all_persons_list
+    path('api/all_persons_list', views.AllPersonsList.as_view(), name='all_persons_list'),
+
+    #ex: /prestadores/api/all_suppliers_list
+    path('api/all_suppliers_list', views.AllSuppliersList.as_view(), name='all_suppliers_list'),
+
+    #ex: /prestadores/api/all_expertises_list
+    path('api/all_expertises_list', views.AllExpertiseList.as_view(), name='all_expertises_list')
 
 ]
