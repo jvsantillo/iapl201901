@@ -46,10 +46,10 @@ urlpatterns = [
     path('signup/', views.SignUp.as_view(), name='signup'),
 
     #API REST:
-    
+
     #ex: /prestadores/api/active_persons_list
-    path('/api/active_persons_list', views.ActivePersonsList, name='active_persons_list'),
+    path('api/active_persons_list', views.ActivePersonsList, name='active_persons_list'),
     #ex: /prestadores/api/active_persons_list
-    path('/api/all_persons_list', views.AllPersonsList, name='all_persons_list')
+    path('api/all_persons_list', views.AllPersonsList, name='all_persons_list')
 
 ]
