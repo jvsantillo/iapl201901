@@ -7,6 +7,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
 from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.decorators import api_view
 from .serializers import PersonSerializer, SupplierSerializer, ExpertiseSerializer
 
 
@@ -35,9 +38,27 @@ def person (request, person_id):
 
     return HttpResponse(template.render(context, request))
 
+@api_view(['POST'])
 def create_person(request):
-    request.GET('')
-    return HttpResponse("In development... You are creating a person")
+    expertise_serializer = PersonSerializer(data=request.data)
+    if expertise_serializer.is_valid():
+        expertise_serializer.save()
+        return Response({"data": "Person added successfully"}, status=status.HTTP_201_CREATED)
+    else:
+        error_details = []
+        for key in expertise_serializer.errors.keys():
+            error_details.append({"field": key, "message": expertise_serializer.errors[key][0]})
+            data = {
+                "Error": {
+                    "status": 400,
+                    "message": "Your submitted data was not valid - please correct the below errors",
+                    "error_details": error_details
+                    }
+                }
+
+        return Response(data, status=status.HTTP_400_BAD_REQUEST)
+
+
 def update_person(request, person_id):
     return HttpResponse("In development... You are updating person ID %s." % person_id)
 
@@ -81,8 +102,26 @@ def supplier (request, person_id):
     }
     return HttpResponse(template.render(context, request))
 
+@api_view(['POST'])
 def create_supplier(request):
-    return HttpResponse("In development... You are creating a supplier")
+    expertise_serializer = SupplierSerializer(data=request.data)
+    if expertise_serializer.is_valid():
+        expertise_serializer.save()
+        return Response({"data": "Supplier added successfully"}, status=status.HTTP_201_CREATED)
+    else:
+        error_details = []
+        for key in expertise_serializer.errors.keys():
+            error_details.append({"field": key, "message": expertise_serializer.errors[key][0]})
+            data = {
+                "Error": {
+                    "status": 400,
+                    "message": "Your submitted data was not valid - please correct the below errors",
+                    "error_details": error_details
+                    }
+                }
+
+        return Response(data, status=status.HTTP_400_BAD_REQUEST)
+
 def update_supplier(request, supplier_id):
     return HttpResponse("In development... You are updating supplier ID %s." % supplier_id)
 def delete_supplier(request, supplier_id):
@@ -102,8 +141,26 @@ def expertise (request, person_id):
     }
     return HttpResponse(template.render(context, request))
 
+@api_view(['POST'])
 def create_expertise(request):
-    return HttpResponse("In development... You are creating a expertise")
+    expertise_serializer = ExpertiseSerializer(data=request.data)
+    if expertise_serializer.is_valid():
+        expertise_serializer.save()
+        return Response({"data": "Expertise added successfully"}, status=status.HTTP_201_CREATED)
+    else:
+        error_details = []
+        for key in expertise_serializer.errors.keys():
+            error_details.append({"field": key, "message": expertise_serializer.errors[key][0]})
+            data = {
+                "Error": {
+                    "status": 400,
+                    "message": "Your submitted data was not valid - please correct the below errors",
+                    "error_details": error_details
+                    }
+                }
+
+        return Response(data, status=status.HTTP_400_BAD_REQUEST)
+        
 def update_expertise(request, expertise_id):
     return HttpResponse("In development... You are updating expertise ID %s." % expertise_id)
 def delete_expertise(request, expertise_id):
