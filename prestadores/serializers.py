@@ -12,7 +12,9 @@ class PersonSerializer(serializers.ModelSerializer):
         return person_obj
 
     def update(self, instance, validated_data):
-        instance.name = validated_data["name"]
+        instance.name = validated_data.get('name', instance.name)
+        instance.insertion_date = validated_data.get('insertion_date', instance.insertion_date)
+        instance.exclusion_date = validated_data.get('exclusion_date', instance.exclusion_date)
         instance.save()
         return instance
 
@@ -27,7 +29,9 @@ class SupplierSerializer(serializers.ModelSerializer):
         return supplier_obj
 
     def update(self, instance, validated_data):
-        instance.name = validated_data["name"]
+        instance.person = validated_data.get('person', instance.person)
+        instance.insertion_date = validated_data.get('insertion_date', instance.insertion_date)
+        instance.exclusion_date = validated_data.get('exclusion_date', instance.exclusion_date)
         instance.save()
         return instance
 
@@ -42,6 +46,10 @@ class ExpertiseSerializer(serializers.ModelSerializer):
         return expertise_obj
 
     def update(self, instance, validated_data):
-        instance.name = validated_data["name"]
+        instance.field = validated_data.get('field', instance.field)
+        instance.description = validated_data.get('description', instance.description)
+        instance.suppliers = validated_data.get('suppliers', instance.suppliers)
+        instance.insertion_date = validated_data.get('insertion_date', instance.insertion_date)
+        instance.exclusion_date = validated_data.get('exclusion_date', instance.exclusion_date)
         instance.save()
         return instance

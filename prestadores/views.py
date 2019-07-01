@@ -40,14 +40,14 @@ def person (request, person_id):
 
 @api_view(['POST'])
 def create_person(request):
-    expertise_serializer = PersonSerializer(data=request.data)
-    if expertise_serializer.is_valid():
-        expertise_serializer.save()
+    person_serializer = PersonSerializer(data=request.data)
+    if person_serializer.is_valid():
+        person_serializer.save()
         return Response({"data": "Person added successfully"}, status=status.HTTP_201_CREATED)
     else:
         error_details = []
-        for key in expertise_serializer.errors.keys():
-            error_details.append({"field": key, "message": expertise_serializer.errors[key][0]})
+        for key in person_serializer.errors.keys():
+            error_details.append({"field": key, "message": person_serializer.errors[key][0]})
             data = {
                 "Error": {
                     "status": 400,
@@ -58,9 +58,26 @@ def create_person(request):
 
         return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
-
+@api_view(['POST'])
 def update_person(request, person_id):
-    return HttpResponse("In development... You are updating person ID %s." % person_id)
+    person_obj = Person.objects.get(pk=person_id)
+    person_serializer = PersonSerializer(person_obj, data=request.data)
+    if person_serializer.is_valid():
+        person_serializer.save()
+        return Response({"data": "Person updated successfully"}, status=status.HTTP_201_CREATED)
+    else:
+        error_details = []
+        for key in person_serializer.errors.keys():
+            error_details.append({"field": key, "message": person_serializer.errors[key][0]})
+            data = {
+                "Error": {
+                    "status": 400,
+                    "message": "Your submitted data was not valid - please correct the below errors",
+                    "error_details": error_details
+                }
+            }
+
+        return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
 def delete_person(request, person_id):
     person_obj = Person.objects.get(pk=person_id)
@@ -103,15 +120,16 @@ def supplier (request, person_id):
     return HttpResponse(template.render(context, request))
 
 @api_view(['POST'])
+
 def create_supplier(request):
-    expertise_serializer = SupplierSerializer(data=request.data)
-    if expertise_serializer.is_valid():
-        expertise_serializer.save()
+    supplier_serializer = SupplierSerializer(data=request.data)
+    if supplier_serializer.is_valid():
+        supplier_serializer.save()
         return Response({"data": "Supplier added successfully"}, status=status.HTTP_201_CREATED)
     else:
         error_details = []
-        for key in expertise_serializer.errors.keys():
-            error_details.append({"field": key, "message": expertise_serializer.errors[key][0]})
+        for key in supplier_serializer.errors.keys():
+            error_details.append({"field": key, "message": supplier_serializer.errors[key][0]})
             data = {
                 "Error": {
                     "status": 400,
