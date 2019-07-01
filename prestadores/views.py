@@ -140,8 +140,27 @@ def create_supplier(request):
 
         return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['POST'])
 def update_supplier(request, supplier_id):
-    return HttpResponse("In development... You are updating supplier ID %s." % supplier_id)
+    supplier_obj = Supplier.objects.get(pk=supplier_id)
+    supplier_serializer = SupplierSerializer(supplier_obj, data=request.data)
+    if supplier_serializer.is_valid():
+        supplier_serializer.save()
+        return Response({"data": "Supplier updated successfully"}, status=status.HTTP_201_CREATED)
+    else:
+        error_details = []
+        for key in supplier_serializer.errors.keys():
+            error_details.append({"field": key, "message": supplier_serializer.errors[key][0]})
+            data = {
+                "Error": {
+                    "status": 400,
+                    "message": "Your submitted data was not valid - please correct the below errors",
+                    "error_details": error_details
+                }
+            }
+
+        return Response(data, status=status.HTTP_400_BAD_REQUEST)
+
 def delete_supplier(request, supplier_id):
     return HttpResponse("In development... You are updating supplier ID %s." % supplier_id)
     return HttpResponse("In development... You are deleting supplier ID %s." % supplier_id)
@@ -178,9 +197,28 @@ def create_expertise(request):
                 }
 
         return Response(data, status=status.HTTP_400_BAD_REQUEST)
-        
+
+@api_view(['POST'])
 def update_expertise(request, expertise_id):
-    return HttpResponse("In development... You are updating expertise ID %s." % expertise_id)
+    expertise_obj = Supplier.objects.get(pk=expertise_id)
+    expertise_serializer = ExpertiseSerializer(expertise_obj, data=request.data)
+    if expertise_serializer.is_valid():
+        expertise_serializer.save()
+        return Response({"data": "Supplier updated successfully"}, status=status.HTTP_201_CREATED)
+    else:
+        error_details = []
+        for key in expertise_serializer.errors.keys():
+            error_details.append({"field": key, "message": expertise_serializer.errors[key][0]})
+            data = {
+                "Error": {
+                    "status": 400,
+                    "message": "Your submitted data was not valid - please correct the below errors",
+                    "error_details": error_details
+                }
+            }
+
+        return Response(data, status=status.HTTP_400_BAD_REQUEST)
+
 def delete_expertise(request, expertise_id):
     return HttpResponse("In development... You are updating expertise ID %s." % expertise_id)
     return HttpResponse("In development... You are deleting expertise ID %s." % expertise_id)
