@@ -82,13 +82,19 @@ def update_person(request, person_id):
 def delete_person(request, person_id):
     person_obj = Person.objects.get(pk=person_id)
     template = loader.get_template('prestadores/delete_person.html')
-    print(person_obj.exclusion_date, person_obj.name)
     Person.objects.filter(pk=person_id).update(exclusion_date=timezone.now())
-    print(person_obj.exclusion_date)
     context = {
         'id': person_obj.id
     }
+
     return HttpResponse(template.render(context, request))
+
+@api_view(['DELETE'])
+def delete_person_api(request, person_id):
+    person_obj = Person.objects.get(pk=person_id)
+    person_obj.update(exclusion_date=timezone.now())
+
+    return HttpResponse(status=204)
 
 def retrieve_persons(request):
     persons_list = Person.objects.filter(exclusion_date__isnull=True).order_by('-insertion_date')[:5]

@@ -25,7 +25,7 @@ urlpatterns = [
     #ex: /prestadores/update_supplier/1
     path('/api/update_supplier/<int:supplier_id>/', views.update_supplier, name='update_supplier'),
     #ex: /prestadores/delete_supplier/1
-    path('delete_supplier/<int:supplier_id>/', views.delete_supplier, name='delete_supplier'),
+    path('api/delete_supplier/<int:supplier_id>/', views.delete_supplier, name='delete_supplier'),
     #ex: /prestadores/retrieve_suppliers
     path('retrieve_suppliers/', views.retrieve_suppliers, name='retrieve_suppliers'),
 
@@ -36,7 +36,7 @@ urlpatterns = [
     #ex: /prestadores/update_expertise/1
     path('/api/update_expertise/<int:expertise_id>/', views.update_expertise, name='update_expertise'),
     #ex: /prestadores/delete_expertise/1
-    path('delete_expertise/<int:expertise_id>/', views.delete_expertise, name='delete_expertise'),
+    path('api/delete_expertise/<int:expertise_id>/', views.delete_expertise, name='delete_expertise'),
     #ex: /prestadores/retrieve_expertises
     path('retrieve_expertises/', views.retrieve_expertises, name='retrieve_expertises'),
 
@@ -51,6 +51,8 @@ urlpatterns = [
     path('api/active_persons_list', views.ActivePersonsList.as_view(), name='active_persons_list'),
     #ex: /prestadores/api/all_persons_list
     path('api/all_persons_list', views.AllPersonsList.as_view(), name='all_persons_list'),
+    #ex: /prestadores/api/delete_person_api/1
+    path('delete_person_api/<int:person_id>/', views.delete_person_api, name='delete_person_api'),
 
     #ex: /prestadores/api/all_suppliers_list
     path('api/all_suppliers_list', views.AllSuppliersList.as_view(), name='all_suppliers_list'),
