@@ -14,6 +14,8 @@ urlpatterns = [
     path('api/update_person/<int:person_id>/', views.update_person, name='update_person'),
     #ex: /prestadores/delete_person/1
     path('delete_person/<int:person_id>/', views.delete_person, name='delete_person'),
+    #ex: /prestadores/delete_person/1
+    path('api/delete_person/<int:person_id>/', views.delete_person_api, name='delete_person'),
     #ex: /prestadores/retrieve_persons
     path('retrieve_persons/', views.retrieve_persons, name='retrieve_persons'),
     
@@ -45,18 +47,12 @@ urlpatterns = [
     #ex: /prestadores/signup
     path('signup/', views.SignUp.as_view(), name='signup'),
 
-    #API REST:
-
     #ex: /prestadores/api/active_persons_list
     path('api/active_persons_list', views.ActivePersonsList.as_view(), name='active_persons_list'),
     #ex: /prestadores/api/all_persons_list
     path('api/all_persons_list', views.AllPersonsList.as_view(), name='all_persons_list'),
-    #ex: /prestadores/api/delete_person_api/1
-    path('delete_person_api/<int:person_id>/', views.delete_person_api, name='delete_person_api'),
-
     #ex: /prestadores/api/all_suppliers_list
     path('api/all_suppliers_list', views.AllSuppliersList.as_view(), name='all_suppliers_list'),
-
     #ex: /prestadores/api/all_expertises_list
     path('api/all_expertises_list', views.AllExpertiseList.as_view(), name='all_expertises_list')
 

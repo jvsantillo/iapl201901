@@ -92,7 +92,7 @@ def delete_person(request, person_id):
 @api_view(['DELETE'])
 def delete_person_api(request, person_id):
     person_obj = Person.objects.get(pk=person_id)
-    person_obj.update(exclusion_date=timezone.now())
+    person_obj.exclusion_date=timezone.now()
 
     return HttpResponse(status=204)
 
@@ -168,8 +168,10 @@ def update_supplier(request, supplier_id):
         return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
 def delete_supplier(request, supplier_id):
-    return HttpResponse("In development... You are updating supplier ID %s." % supplier_id)
-    return HttpResponse("In development... You are deleting supplier ID %s." % supplier_id)
+    supplier_obj = Supplier.objects.get(pk=supplier_id)
+    supplier_obj.exclusion_date=timezone.now()
+    return HttpResponse(status=204)
+
 def retrieve_suppliers(request):
     return HttpResponse("In development...Here are all suppliers")
 
@@ -226,8 +228,10 @@ def update_expertise(request, expertise_id):
         return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
 def delete_expertise(request, expertise_id):
-    return HttpResponse("In development... You are updating expertise ID %s." % expertise_id)
-    return HttpResponse("In development... You are deleting expertise ID %s." % expertise_id)
+    expertise_obj = Expertise.objects.get(pk=expertise_id)
+    expertise_obj.exclusion_date=timezone.now()
+    return HttpResponse(status=204)
+
 def retrieve_expertises(request):
     return HttpResponse("In development...Here are all expertises")
 
