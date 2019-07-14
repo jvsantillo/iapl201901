@@ -206,11 +206,11 @@ def create_expertise(request):
 
 @api_view(['POST'])
 def update_expertise(request, expertise_id):
-    expertise_obj = Supplier.objects.get(pk=expertise_id)
+    expertise_obj = Expertise.objects.get(pk=expertise_id)
     expertise_serializer = ExpertiseSerializer(expertise_obj, data=request.data)
     if expertise_serializer.is_valid():
         expertise_serializer.save()
-        return Response({"data": "Supplier updated successfully"}, status=status.HTTP_201_CREATED)
+        return Response({"data": "Expertise updated successfully"}, status=status.HTTP_201_CREATED)
     else:
         error_details = []
         for key in expertise_serializer.errors.keys():

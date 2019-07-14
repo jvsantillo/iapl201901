@@ -23,7 +23,7 @@ urlpatterns = [
     #ex: /prestadores/supplier/1
     path('supplier/<int:person_id>/', views.supplier, name='supplier'),
     #ex: /prestadores/update_supplier/1
-    path('/api/update_supplier/<int:supplier_id>/', views.update_supplier, name='update_supplier'),
+    path('api/update_supplier/<int:supplier_id>/', views.update_supplier, name='update_supplier'),
     #ex: /prestadores/delete_supplier/1
     path('api/delete_supplier/<int:supplier_id>/', views.delete_supplier, name='delete_supplier'),
     #ex: /prestadores/retrieve_suppliers
@@ -34,7 +34,7 @@ urlpatterns = [
     #ex: /prestadores/expertise/1
     path('expertise/<int:person_id>/', views.expertise, name='expertise'),
     #ex: /prestadores/update_expertise/1
-    path('/api/update_expertise/<int:expertise_id>/', views.update_expertise, name='update_expertise'),
+    path('api/update_expertise/<int:expertise_id>/', views.update_expertise, name='update_expertise'),
     #ex: /prestadores/delete_expertise/1
     path('api/delete_expertise/<int:expertise_id>/', views.delete_expertise, name='delete_expertise'),
     #ex: /prestadores/retrieve_expertises
