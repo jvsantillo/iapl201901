@@ -1,6 +1,5 @@
 import pytz
 import json
-import urllib
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
@@ -13,6 +12,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 from .serializers import PersonSerializer, SupplierSerializer, ExpertiseSerializer
+from urllib.request import urlopen
 
 
 from .models import Person, Expertise, Supplier
@@ -260,11 +260,12 @@ def search_persons (request):
 
 def get_awards(request):
     url = "https://jns-filmes.herokuapp.com/api/awards"
-    json_url = urlopen(url)
-    data = json.loads(json_url.read())
-    template = loader.get_template('prestadores/search_persons.html')
-    context = {
-        'data': data
-    }
+    with urlopen(url) as conn:
+        json_url = urlopen(url)
+        data = json.loads(json_url.read())
+        template = loader.get_template('prestadores/get_awards.html')
+        context = {
+            'data': data
+        }
     
     return HttpResponse(template.render(context, request))
