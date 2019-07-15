@@ -255,3 +255,14 @@ def search_persons (request):
            # 'active_expertise_list': active_expertise_list,
         }
     return HttpResponse(template.render(context, request))
+
+from django.shortcuts import render
+import requests
+
+def home(request):
+    response = requests.get('https://api.github.com/users/bobbmarcio')
+    geodata = response.json()
+    return render(request, 'prestadores/home.html', {
+        'id': geodata['id'],
+        'name': geodata['name'],
+    })
