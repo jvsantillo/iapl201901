@@ -4,6 +4,14 @@
 
 <h1>Prêmios</h1> </br>
 
-{{data}} {{ name }}
+{% if id %}
+    <ul>
+    {% for id in data %}
+            <li>{{ year }}{{ name }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <h1>No persons are available.</h1>
+{% endif %}
 
 {% endblock %}

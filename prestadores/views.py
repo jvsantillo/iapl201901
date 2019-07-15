@@ -265,10 +265,13 @@ def get_awards(request):
         data = json.loads(json_url.read())
         id = data[1]['id']
         name = data[1]['name']
+        year = data[1]['year']
         template = loader.get_template('prestadores/get_awards.html')
         context = {
             'id': id,
-            'name': name
+            'name': name,
+            'year': year,
+            'data': data
         }
     
     return HttpResponse(template.render(context, request))
