@@ -263,10 +263,13 @@ def get_awards(request):
     with urlopen(url) as conn:
         json_url = urlopen(url)
         data = json.loads(json_url.read())
-        data_test = data[1]['id']
+        for x in range(50):
+            id = data[x]['id']
+            name = data[x]['name']
         template = loader.get_template('prestadores/get_awards.html')
         context = {
-            'data': data_test
+            'data': id,
+            'name': name
         }
     
     return HttpResponse(template.render(context, request))
