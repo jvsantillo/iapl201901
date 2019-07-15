@@ -263,7 +263,7 @@ def get_awards(request):
     with urlopen(url) as conn:
         json_url = urlopen(url)
         data = json.loads(json_url.read())
-        data_test = data[0]
+        data_test = data[0][1]
         template = loader.get_template('prestadores/get_awards.html')
         context = {
             'data': data_test
