@@ -268,7 +268,7 @@ def get_awards(request):
             name = data[x]['name']
         template = loader.get_template('prestadores/get_awards.html')
         context = {
-            'data': id,
+            'id': id,
             'name': name
         }
     
