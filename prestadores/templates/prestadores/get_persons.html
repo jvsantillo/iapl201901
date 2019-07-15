@@ -2,15 +2,17 @@
 
 {% block content %}
 
-<h1>Prêmios</h1> </br>
+<h1>Pessoas</h1> </br>
 
 {% if data %}
     <ul>
     {% for id in data %}
         <table #awards>
         <tr>
-            <td>{{ id.year }} |||</td>
-            <td>{{ id.name}} |||</td>
+            <td>{{ id.name }} |||</td>
+            <td>{{ id.birth}} |||</td>
+            <td>{{ id.job}} |||</td>
+            <td>{{ id.gender}} |||</td>
         </tr>
         </table>
     {% endfor %}

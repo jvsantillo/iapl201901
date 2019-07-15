@@ -258,20 +258,51 @@ def search_persons (request):
         }
     return HttpResponse(template.render(context, request))
 
+
 def get_awards(request):
     url = "https://jns-filmes.herokuapp.com/api/awards"
     with urlopen(url) as conn:
         json_url = urlopen(url)
         data = json.loads(json_url.read())
-        id = data[1]['id']
-        name = data[1]['name']
-        year = data[1]['year']
         template = loader.get_template('prestadores/get_awards.html')
         context = {
-            'id': id,
-            'name': name,
-            'year': year,
             'data': data
         }
-    
+
+    return HttpResponse(template.render(context, request))
+
+def get_films(request):
+    url = "https://jns-filmes.herokuapp.com/api/films"
+    with urlopen(url) as conn:
+        json_url = urlopen(url)
+        data = json.loads(json_url.read())
+        template = loader.get_template('prestadores/get_films.html')
+        context = {
+            'data': data
+        }
+
+    return HttpResponse(template.render(context, request))
+
+def get_persons(request):
+    url = "https://jns-filmes.herokuapp.com/api/persons"
+    with urlopen(url) as conn:
+        json_url = urlopen(url)
+        data = json.loads(json_url.read())
+        template = loader.get_template('prestadores/get_persons.html')
+        context = {
+            'data': data
+        }
+
+    return HttpResponse(template.render(context, request))
+
+def get_prizes(request):
+    url = "https://jns-filmes.herokuapp.com/api/prizes"
+    with urlopen(url) as conn:
+        json_url = urlopen(url)
+        data = json.loads(json_url.read())
+        template = loader.get_template('prestadores/get_prizes.html')
+        context = {
+            'data': data
+        }
+
     return HttpResponse(template.render(context, request))

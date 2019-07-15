@@ -56,6 +56,9 @@ urlpatterns = [
     #ex: /prestadores/api/all_expertises_list
     path('api/all_expertises_list', views.AllExpertiseList.as_view(), name='all_expertises_list'),
 
-    path('jns/awards', views.get_awards, name='get_awards')
+    path('jns/awards', views.get_awards, name='get_awards'),
+    path('jns/films', views.get_films, name='get_films'),
+    path('jns/persons', views.get_persons, name='get_persons'),
+    path('jns/prizes', views.get_prizes, name='get_prizes')
 
 ]

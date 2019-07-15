@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Prêmios</h1> </br>
+<h1>Filmes</h1> </br>
 
 {% if data %}
     <ul>
@@ -10,7 +10,8 @@
         <table #awards>
         <tr>
             <td>{{ id.year }} |||</td>
-            <td>{{ id.name}} |||</td>
+            <td>{{ id.title}} |||</td>
+            <td>{{ id.genre}} |||</td>
         </tr>
         </table>
     {% endfor %}

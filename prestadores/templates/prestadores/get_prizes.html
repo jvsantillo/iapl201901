@@ -9,8 +9,10 @@
     {% for id in data %}
         <table #awards>
         <tr>
-            <td>{{ id.year }} |||</td>
-            <td>{{ id.name}} |||</td>
+            <td>{{ id.category }} |||</td>
+            <td>{{ id.idWinner}} |||</td>
+            <td>{{ id.idFilm}} |||</td>
+            <td>{{ id.idAward}} |||</td>
         </tr>
         </table>
     {% endfor %}
