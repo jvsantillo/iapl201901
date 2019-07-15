@@ -54,6 +54,8 @@ urlpatterns = [
     #ex: /prestadores/api/all_suppliers_list
     path('api/all_suppliers_list', views.AllSuppliersList.as_view(), name='all_suppliers_list'),
     #ex: /prestadores/api/all_expertises_list
-    path('api/all_expertises_list', views.AllExpertiseList.as_view(), name='all_expertises_list')
+    path('api/all_expertises_list', views.AllExpertiseList.as_view(), name='all_expertises_list'),
+
+    path('jns/awards', views.get_awards, name='get_awards')
 
 ]

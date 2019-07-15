@@ -1,4 +1,6 @@
 import pytz
+import json
+import urllib
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
@@ -254,4 +256,15 @@ def search_persons (request):
             'active_suppliers_list': active_suppliers_list,
            # 'active_expertise_list': active_expertise_list,
         }
+    return HttpResponse(template.render(context, request))
+
+def get_awards(request):
+    url = "https://jns-filmes.herokuapp.com/api/awards"
+    json_url = urlopen(url)
+    data = json.loads(json_url.read())
+    template = loader.get_template('prestadores/search_persons.html')
+    context = {
+        'data': data
+    }
+    
     return HttpResponse(template.render(context, request))
